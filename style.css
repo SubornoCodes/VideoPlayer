@@ -1,0 +1,938 @@
+@import url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff');
+
+
+
+
+
+* {
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  user-select: none;
+  transition: transform 500ms;
+}
+
+.time {
+  position: absolute;
+  font-size: 40px;
+  color: #fff;
+  right: 20px;
+  z-index: 3;
+  top: 20px;
+  pointer-events: none;
+  transition: opacity 500ms;
+}
+
+.wm {
+  position: absolute;
+  right: 30px;
+  font-size: 20px;
+  color: red;
+  z-index: 999;
+  font-weight: 400;
+  bottom: 30px;
+  display: none;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html {
+  --main-theme-color: red;
+}
+
+.back {
+  position: absolute;
+  left: 3%;
+  cursor: pointer;
+  top: 5%;
+  z-index: 9999;
+  scale: 3;
+}
+
+.back svg {
+  stroke: white;
+  stroke-width: 2;
+  fill: #fff;
+}
+
+.ad {
+  opacity: 1;
+  color: #fff;
+  left: 0;
+  display: flex;
+  top: 0;
+  width: 100%;
+}
+
+.logo {
+  margin-left: 5px;
+  color: red;
+}
+
+.skiparea {
+  left: 0;
+  right: 0;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  z-index: 1;
+  height: 92%;
+}
+
+.skiparea .lsa {
+  position: absolute;
+  width: 50%;
+  left: 0;
+  height: 100%;
+  display: flex;
+}
+
+.skiparea .msa {
+  position: absolute;
+  width: 50%;
+  left: 33%;
+  height: 100%;
+  display: flex;
+}
+
+.skiparea .rsa {
+  position: absolute;
+  display: flex;
+  width: 50%;
+  right: 0;
+  height: 100%;
+}
+
+.aria-label {
+  border-radius: 2px;
+  font-weight: 600;
+  width: auto;
+  background: #fff;
+  height: auto;
+  transition: all 500ms;
+  z-index: 99;
+  position: absolute;
+}
+
+.loader {
+  z-index: 9;
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  display: none;
+  align-items: center;
+  pointer-events: none;
+  justify-content: center;
+  background: none;
+}
+
+.loader .dots span {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  background: var(--main-theme-color);
+  border-radius: 50%;
+  transform: rotate(calc(var(--i) * (360deg / 15))) translateY(35px);
+  animation: animate 1.5s linear infinite;
+  animation-delay: calc(var(--i) * 0.1s);
+  opacity: 0;
+}
+
+@keyframes animate {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+
+body {
+  font-family: 'San Francisco', Helvetica, Arial, san-serif;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: rgb(0, 0, 0);
+}
+
+.videolocation {
+  position: absolute;
+  z-index: 1;
+}
+
+.fp2 {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tom {
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  width: auto;
+  color: white;
+  padding: 10px;
+  font-size: 35px;
+  text-align: center;
+  z-index: 1;
+}
+
+.fakeContextMenu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  box-shadow: 0 0 20px rgb(0, 0, 0);
+  width: 200px;
+  color: #fff;
+  height: 200px;
+  /* display: none; */
+  background: #00000093;
+  top: 50%;
+  left: 50%;
+}
+
+.fakeContextMenu div {
+  position: relative;
+  left: 10px;
+  font-weight: 600;
+  height: auto;
+  width: 180px;
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 3px;
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+.fakeContextMenu div:hover {
+  background: #7272729a;
+}
+
+.player.full-screen .effect {
+  position: absolute;
+} 
+.fp {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.effect {
+  pointer-events: none;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: rgb(3, 3, 3);
+  font-size: 1.2rem;
+  transition: opacity 0.3s ease;
+  z-index: 999;
+  opacity: 0;
+  color: #fff;
+  transform: scale(0);
+}
+
+.effect.touched {
+  animation-name: nice;
+  animation-duration: 1000ms;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes nice {
+  0% {
+    opacity: .8;
+    transform: scale(1.1);
+  }
+
+  50% {
+    opacity: .3;
+    transform: scale(1.00005);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+
+video {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cap {
+  display: none;
+}
+
+.fp1 {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.caption {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  width: auto;
+  color: white;
+  pointer-events: none;
+  padding: 10px;
+  font-size: 40px;
+  text-align: center;
+  display: none;
+  z-index: -1;
+}
+
+.caption.hidden {
+  display: none;
+}
+
+
+.player.captions .caption {
+  background-color: rgba(0, 0, 0, 0.7);
+  display: block;
+  z-index: 1;
+}
+
+.player.capsdown .caption {
+  bottom: 10%;
+}
+
+/* .player.full-screen .revtime {
+  right: 10%;
+} */
+/* .player.full-screen .timeline {
+  width: 100%;
+} */
+/* .player.full-screen .timeline::before {
+  right: calc(100% - var(--preview-position) * 100.4%);
+}
+.player.full-screen .timeline::after {
+  right: calc(100% - var(--progress-position) * 100.4%);
+}
+.player.full-screen .thumb-indicator {
+  left: calc(var(--progress-position) * 99.5%);
+} */
+
+.vignettett {
+  position: fixed;
+  width: 101%;
+  height: 10%;
+  background: transparent;
+  top: 0px;
+  pointer-events: none;
+  right: 0;
+  padding: 0px 50px;
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, .7) 10%, transparent);
+  z-index: 2;
+}
+
+.timeline-container {
+  width: 91%;
+  height: 7px;
+  /* margin-inline: .100rem; */
+  position: absolute;
+  left: 1%;
+  bottom: 120px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: transform 500ms;
+  z-index: 999;
+}
+
+.revtime {
+  position: absolute;
+  width: auto;
+  height: auto;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  ;
+  right: 1%;
+  font-size: 30px;
+  height: 20px;
+  color: white;
+  z-index: 999;
+  bottom: 120px;
+}
+
+.timeline {
+  background-color: transparent;
+  height: 6px;
+  width: 100.5%;
+  position: relative;
+  transition: all 100ms;
+  transform: scaleY(1.3);
+  z-index: 99;
+}
+
+.main-line {
+  width: 100%;
+  height: 3px;
+  background-color: rgb(201, 201, 201);
+  z-index: 99;
+  position: relative;
+  overflow-x: visible;
+  transition: all 300ms;
+  overflow: hidden;
+}
+
+.timeline:hover .preview-indicator {
+  display: block;
+}
+
+.timeline:hover .thattime {
+  display: block;
+}
+
+.timeline:hover .preview-img {
+  display: block;
+}
+
+/* .timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: calc(100% - var(--preview-time-position) * 100%);
+  background-color: rgb(255, 255, 255);
+  display: none;
+  transition: all 100ms;
+} */
+.preview-indicator {
+  height: 5px;
+  width: 3px;
+  position: absolute;
+  left: 0;
+  background: rgba(255, 255, 255);
+  display: none;
+  transition: all 0ms;
+  z-index: 1;
+}
+
+
+.timeline-container.scrubbing .progress-line {
+  right: 0;
+  width: var(--preview-scrubbling-position);
+}
+
+.progress-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: calc(100% - var(--progress-position) * 100%);
+  background-color: var(--main-theme-color);
+  z-index: 1;
+}
+
+.timeline-container.scrubbing .thumb-indicator {
+  left: var(--preview-scrubbling-position2);
+}
+
+.thumb-indicator {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  bottom: -65%;
+  z-index: 999;
+  transform: scale(1);
+  left: calc(var(--progress-position) * 100% - 10px);
+  background-color: var(--main-theme-color);
+  border-radius: 50%;
+  transition: scale 200ms;
+}
+
+/* 
+.timeline .preview-img {
+  position: absolute;
+  height: auto;
+  width: 157.5px;
+  top: -3.7rem;
+  cursor: default;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: transform 500ms;
+  left: calc(var(--preview-position) - 8px);
+  box-shadow: 0 0 10px rgb(26, 26, 26);
+  display: none;
+} */
+
+.timeline .thattime {
+  position: absolute;
+  font-size: 28px;
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif;
+  background: rgb(20, 20, 20);
+  background-size: 10px 10px;
+  padding-top: 5px;
+  height: 40px;
+  width: 157.5px;
+  transform: translateY(0%);
+  text-align: center;
+  top: -5rem;
+  /* border-radius: 10px; */
+  /* border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px; */
+  color: #ffffff;
+  left: calc(var(--preview-position) - 8px);
+  box-shadow: 0 0 10px rgb(26, 26, 26);
+  transition: opacity 100ms;
+  cursor: default;
+  display: none;
+  z-index: 99999999999999;
+}
+
+.timeline svg {
+  position: absolute;
+  width: 30px;
+  left: 0;
+  color: rgb(255, 255, 255);
+  height: 30px;
+  rotate: 90deg;
+  top: -2rem;
+  cursor: default;
+  display: none;
+  opacity: 0;
+
+}
+
+.thumbnail-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 1;
+}
+
+
+
+.timeline-container.scrubbing .preview-img,
+.main-line:hover~.preview-img,
+.timeline-container.scrubbing .thattime,
+.timeline-container.scrubbing #aft,
+.main-line:hover~.thattime,
+.main-line:hover .preview-indicator,
+.main-line:hover~#aft,
+.main-line:hover .preview-img {
+  display: block;
+}
+
+.timeline-container.scrubbing .thattime,
+.main-line:hover~.thattime {
+  opacity: 1;
+
+}
+
+.timeline-container.scrubbing .thumb-indicator,
+.main-line:hover~.thumb-indicator {
+  transform: scale(1);
+
+}
+
+
+.timeline-container.scrubbing .preview-indicator,
+.main-line:hover .preview-indicator {
+  display: block;
+}
+
+.thumb-indicator:hover {
+  scale: 1.1;
+}
+
+.timeline-container.scrubbing .timeline::before,
+.timeline-container:hover .timeline::before {
+  display: block;
+}
+
+.timeline-container:hover .preview-img,
+.timeline-container:hover .thattime {
+  display: block;
+  opacity: 1;
+}
+
+.timeline-container.scrubbing .thumb-indicator,
+.timeline-container:hover .thumb-indicator {
+  transform: scale(1);
+}
+
+.timeline-container.scrubbing .timeline,
+.timeline-container:hover .timeline {
+  transform: scaleY(1.3);
+}
+
+.timeline-container.scrubbing .timeline .progress-line,
+.timeline-container:hover .timeline .progress-line {
+  transform: scaleY(1);
+}
+
+.timeline-container.scrubbing .timeline .main-line,
+.timeline-container:hover .timeline .main-line {
+  transform: scaleY(2.2);
+}
+
+.timeline-container.scrubbing .timeline .main-line .thumb-indicator,
+.timeline-container:hover .timeline .main-line .thumb-indicator {
+  transform: scale(1);
+}
+
+/* .timeline-container.scrubbing .timeline:after,
+  .timeline-container.scrubbing .timeline:before,
+  .timeline-container:hover .timeline:before,
+  .timeline-container:hover .timeline:after {
+    transform: scaleY(1.5);
+  } */
+
+
+.player .controls {
+  left: 30px;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  bottom: 30px;
+  z-index: 999;
+}
+
+
+
+.np {
+  position: fixed;
+  width: 101%;
+  height: 15%;
+  background: transparent;
+  bottom: 0px;
+  opacity: 0;
+  z-index: 1;
+  padding: 0px 50px;
+}
+
+.vignette {
+  position: fixed;
+  width: 101%;
+  height: 30%;
+  background: transparent;
+  bottom: 0px;
+  pointer-events: none;
+  right: 0;
+  padding: 0px 50px;
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, .7) 10%, transparent);
+  z-index: 1;
+}
+
+
+.player .controls button {
+  background: transparent;
+  border: none;
+  margin-right: 10px;
+  color: #fff;
+  padding: 0;
+  height: 50px;
+  width: 50px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  opacity: .85;
+  transition: all 500ms;
+}
+
+.player .controls button svg {
+  transition: all 500ms;
+}
+
+.player .controls button:hover {
+  transform: scale(0.5);
+  opacity: 1;
+}
+
+.player .mini-player-btn {
+  margin-right: 100px;
+}
+
+
+.volume-container {
+  margin-left: 10px;
+  width: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* .volume-container:hover ~ .player .timeline-container {
+    opacity: 0;
+  } */
+
+.volume-high-icon,
+.volume-low-icon,
+.volume-muted-icon {
+  display: none;
+}
+
+.player[data-volume-level="high"] .volume-high-icon {
+  display: block;
+}
+
+.player[data-volume-level="low"] .volume-low-icon {
+  display: block;
+}
+
+.player[data-volume-level="muted"] .volume-muted-icon {
+  display: block;
+}
+
+input[type="range"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 0;
+  height: 10px;
+  cursor: pointer;
+  background-color: transparent;
+  position: absolute;
+  outline: none;
+  transform: scaleX(0);
+  color: #000;
+  left: 127px;
+  bottom: 16px;
+  transform-origin: bottom;
+  transition: all 100ms ease-in-out;
+}
+
+progress[type="range"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 0;
+  height: 10px;
+  border-radius: 10px;
+  z-index: -1;
+  cursor: pointer;
+  background-color: transparent;
+  position: absolute;
+  outline: none;
+  transform: scaleX(0);
+  color: #000;
+  left: 130px;
+  bottom: 18px;
+  transform-origin: bottom;
+  transition: all 100ms ease-in-out;
+}
+
+progress::-webkit-progress-value {
+  height: 5px;
+  background: var(--main-theme-color);
+}
+
+
+progress[type="range"]::-webkit-progress-bar {
+  background: #b3b3b3;
+}
+
+input[type="range"]::-webkit-progress-bar {
+  display: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background: var(--main-theme-color);
+}
+
+
+
+.duration-container {
+  display: flex;
+  align-items: center;
+  bottom: 8px;
+  width: 10px;
+  height: 30px;
+  color: #fff;
+  font-size: 20px;
+  left: 120px;
+  position: absolute;
+  transition: left 300ms;
+  gap: .25rem;
+}
+
+.title {
+  position: absolute;
+  bottom: 30px;
+  width: 120px;
+  white-space: nowrap;
+  border-radius: 3px;
+  height: 20px;
+  color: #000;
+  background: #fff;
+}
+
+.rtitle {
+  right: 0;
+  position: absolute;
+  bottom: 30px;
+  width: auto;
+  padding-right: 2px;
+  white-space: nowrap;
+  border-radius: 3px;
+  height: 20px;
+  color: #000;
+  background: #fff;
+}
+
+.mtitle {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  width: 120px;
+  padding-left: 2px;
+  white-space: nowrap;
+  border-radius: 3px;
+  height: 20px;
+  color: #000;
+  background: #fff;
+}
+
+
+
+
+.player .speed-btn {
+  position: absolute;
+  transition: all .0s;
+  width: 50px;
+  font-size: 60px;
+  transform: scale(1.5);
+  height: 50px;
+  margin-right: 50px !important;
+  right: 115px;
+}
+
+.player .mini-player-btn {
+  position: absolute;
+  transition: all .0s;
+  margin-right: 30px !important;
+  right: 80px;
+}
+
+
+.player .controls button {
+  transition: all 100ms;
+}
+
+.player .controls button:hover {
+  transform: scale(1.5);
+}
+
+.lang-slide {
+  position: absolute;
+  right: 230px;
+  bottom: 30px;
+  display: none;
+  border-radius: 10px;
+  width: 200px;
+  height: 200px;
+  background: rgb(20, 20, 20);
+  color: #fff;
+}
+
+.lang-slide .taa {
+  margin-top: 10px;
+  margin-left: 70px;
+}
+
+.lang-slide .lg div {
+  padding: 10px;
+  height: 50px;
+  cursor: pointer;
+  transition: background 100ms;
+  margin-bottom: 5px;
+}
+
+.lang-slide .lg div:hover {
+  background: rgb(61, 61, 61);
+}
+
+.player .controls .sleep-btn {
+  width: 50px;
+  background-color: #fff;
+  color: #000;
+  position: absolute;
+  border-radius: 8px;
+  transition: all 100ms;
+  z-index: -111;
+  left: 240px;
+}
+
+.player .lang {
+  transition: all 100ms step-end;
+  position: absolute;
+  right: 230px;
+}
+
+.player .captions-btn {
+  transition: all 100ms step-end;
+  position: absolute;
+  margin-right: 50px !important;
+  right: 170px;
+}
+
+.caption-border {
+  position: absolute;
+  transform: scaleX(0);
+  transform-origin: left;
+  bottom: 0px;
+  width: 50px;
+  height: 6px;
+  border-radius: 10px;
+  background: var(--main-theme-color);
+}
+
+.player.captions .caption-border.captions {
+  transform: scaleX(1);
+}
+
+.volume-container:hover button {
+  transform: scale(1.5);
+  opacity: 1;
+}
+
+.player .full-screen-btn {
+  position: absolute;
+  right: 40px;
+}
+
+.full-screen-btn .close,
+.full-screen-btn .open {
+  display: none;
+}
+
+.player.full-screen .full-screen-btn .close {
+  display: block;
+}
+
+.player:not(.full-screen) .full-screen-btn .open {
+  display: block;
+}
+
+.player .controls button.wide-btn {
+  width: 50px;
+}

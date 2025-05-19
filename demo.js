@@ -1,0 +1,1 @@
+var x = document.createElement('script'); x.src = 'script.js'; document.body.appendChild(x); document.getElementsByTagName('script')[0].remove();

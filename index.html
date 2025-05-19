@@ -1,0 +1,163 @@
+<html lang="en" class="main">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" id="jstfun" href="noob.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <title>Video player</title>
+  <link href="https://vjs.zencdn.net/7.14.3/video-js.css" rel="stylesheet" />
+</head>
+
+<body class="mainarea">
+  <div class="player paused captions" data-volume-level="high">
+    <div class="back">
+      <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+    </svg> -->
+  </div>
+    <div class="vignettett"></div>
+    <div class="time"></div>
+    <div class="timeline-container">
+      <div class="thumb-indicator"></div>
+      <div class="timeline">
+        <div class="main-line">
+          
+          <div class="progress-line"></div>
+          <div class="preview-indicator"></div>
+        </div>
+        <video class="preview-img"></video>
+        <h1 class="thattime">00:00</h1>
+        <svg class="play-icon" id="aft" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8,5.14V19.14L19,12.14L8,5.14Z" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="revtime"></div>
+    <div class="vignette"></div>
+    <div class="controls">
+      <button class="playpause" aria-label="Play / Pause">
+        <svg class="play-icon" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8,5.14V19.14L19,12.14L8,5.14Z" />
+        </svg>
+      </button>
+      <div class="volume-container">
+        <button class="mute-btn" aria-label="Mute / Unmute">
+          <svg class="volume-high-icon" viewBox="0 0 24 24">
+            <path fill="currentColor"
+              d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.84 14,18.7V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.76 16.5,12M3,9V15H7L12,20V4L7,9H3Z" />
+          </svg>
+          <svg class="volume-low-icon" viewBox="0 0 24 24">
+            <path fill="currentColor"
+              d="M5,9V15H9L14,20V4L9,9M18.5,12C18.5,10.23 17.5,8.71 16,7.97V16C17.5,15.29 18.5,13.76 18.5,12Z" />
+          </svg>
+          <svg class="volume-muted-icon" viewBox="0 0 24 24">
+            <path fill="currentColor"
+              d="M12,4L9.91,6.09L12,8.18M4.27,3L3,4.27L7.73,9H3V15H7L12,20V13.27L16.25,17.53C15.58,18.04 14.83,18.46 14,18.7V20.77C15.38,20.45 16.63,19.82 17.68,18.96L19.73,21L21,19.73L12,10.73M19,12C19,12.94 18.8,13.82 18.46,14.64L19.97,16.15C20.62,14.91 21,13.5 21,12C21,7.72 18,4.14 14,3.23V5.29C16.89,6.15 19,8.83 19,12M16.5,12C16.5,10.23 15.5,8.71 14,7.97V10.18L16.45,12.63C16.5,12.43 16.5,12.21 16.5,12Z" />
+          </svg>
+        </button>
+        <input class="volume-slider" type="range" min="0" max="1" step="any" value="1">
+        <progress class="volume-pro" type="range" min="0" max="1" step="any" value="1">
+      </div>
+      <div class="duration-container" style="z-index: 99; user-select: none;">
+        <div class="current-time">0:00</div>
+        /
+        <div class="total-time"></div>
+      </div>
+
+      <button class="lang" style="display: none;">Lang</button>
+      <div class="lang-slide">
+        <div class="audio-area">
+          <div class="taa">Audio</div>
+          <hr>
+          <div class="lg">
+            <div onclick="rls()">English</div>
+          </div>
+        </div>
+      </div>
+      <button class="captions-btn" aria-label="Captions">
+        <svg viewBox="0 0 24 24">
+          <path fill="currentColor"
+            d="M18,11H16.5V10.5H14.5V13.5H16.5V13H18V14A1,1 0 0,1 17,15H14A1,1 0 0,1 13,14V10A1,1 0 0,1 14,9H17A1,1 0 0,1 18,10M11,11H9.5V10.5H7.5V13.5H9.5V13H11V14A1,1 0 0,1 10,15H7A1,1 0 0,1 6,14V10A1,1 0 0,1 7,9H10A1,1 0 0,1 11,10M19,4H5C3.89,4 3,4.89 3,6V18A2,2 0 0,0 5,20H19A2,2 0 0,0 21,18V6C21,4.89 20.1,4 19,4Z" />
+        </svg>
+        <div class="caption-border"></div>
+      </button>
+      <button class="speed-btn wide-btn">
+        1x
+      </button>
+      <button class="mini-player-btn">
+        <svg viewBox="0 0 24 24">
+          <path fill="currentColor"
+            d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zm-10-7h9v6h-9z" />
+        </svg>
+      </button>
+      <button class="full-screen-btn" aria-label="Fullscreen">
+        <svg class="open" viewBox="0 0 24 24">
+          <path fill="currentColor"
+            d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />
+        </svg>
+        <svg class="close" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z" />
+        </svg>
+      </button>
+    </div>
+    <div class="fp">
+      <div class="loader">
+        <div class="dots">
+          <span style="--i:1;"></span>
+          <span style="--i:2;"></span>
+          <span style="--i:3;"></span>
+          <span style="--i:4;"></span>
+          <span style="--i:5;"></span>
+          <span style="--i:6;"></span>
+          <span style="--i:7;"></span>
+          <span style="--i:8;"></span>
+          <span style="--i:9;"></span>
+          <span style="--i:10;"></span>
+          <span style="--i:11;"></span>
+          <span style="--i:12;"></span>
+          <span style="--i:13;"></span>
+          <span style="--i:14;"></span>
+          <span style="--i:15;"></span>
+        </div>
+      </div>
+      <div class="np"></div>
+      <div class="effect"></div>
+    </div>
+    <div class="fp1">
+      <div class="caption"></div>
+    </div>
+    <div class="fp2">
+      <div class="tom"></div>
+    </div>
+
+
+ <div class="wm"></div>
+    <div class="skiparea">
+      <div class="lsa"></div>
+      <div class="msa"></div>
+      <div class="rsa"></div>
+    </div>
+    <!-- <video class="show-video"
+      src="https://gredirect.info/download.php?url=aHR0cHM6LyAdrefsdsdfwerFrefdsfrersfdsrfer363435349AawehyfcghysfdsDGDYdgdsfsdfwstdgdsgtert1cGNleWlhc2p1LmFuZjU5OC5jb20vdXNlcjEzNDIvNGRlNjhjYTI1M2UzYTlkY2MxODZlODI0ZDA1ZjljZWQvRVAuMi52MS4xNzE0Mjk4NzA2LjEwODBwLm1wND90b2tlbj1SMy1DN3BiaTZPbllYUXJtZ2dJQWxnJmV4cGlyZXM9MTcxOTg0NzMyMCZpZD0zOTM0NQ==">
+      <track lang="hindi">
+    </video> -->
+    <video class="show-video" id="video">
+      <source src="https://www.dropbox.com/scl/fi/2plyoz7oreshvc5p47j6g/Tomb.Raider.2018.1080p.BluRay.x264-YTS.AM.mp4?rlkey=uocjuacalia3objz6h9e4munm&st=6v7zi881&raw=1">
+    </video>
+
+    <source class="cap" src="resources/Tomb.Raider.2018.720p.BluRay.x264.[YTS.MX]-English.webvtt"></source>
+
+  </div>
+
+  <script src="demo.js"></script>
+  <script src="caps.js"></script>
+  <script
+    src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+  <script src="https://raw.githubusercontent.com/X3TechnologyGroup/VideoFrame/master/VideoFrame.min.js"></script>
+</body>
+
+</html>
